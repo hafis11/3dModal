@@ -19,6 +19,10 @@ function Home() {
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+        />
       </Head>
       <main className="flex w-full flex-1 flex-col relative items-center">
         <Canvas
@@ -51,7 +55,7 @@ function Home() {
           </XR>
         </Canvas>
         <div className="absolute bottom-0 left-0 right-0">
-          <VRButton/>
+          <VRButton />
         </div>
       </main>
 

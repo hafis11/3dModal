@@ -3,8 +3,8 @@ import React from "react";
 function Floor(props) {
   return (
     <mesh {...props} recieveShadow={true}>
-      <boxBufferGeometry args={[20,1,10]} />
-      <meshPhysicalMaterial color='white' />
+      <boxBufferGeometry args={[10, 0.4, 10]} />
+      <meshPhysicalMaterial color="#000" />
     </mesh>
   );
 }

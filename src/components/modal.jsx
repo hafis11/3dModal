@@ -19,7 +19,7 @@ export default function Model(props) {
   }, []); /* highlight-line */
 
   return (
-    <mesh position={[0, -3.6, 3.8]} recieveShadow={true} scale={34}>
+    <mesh position={[0, -5, -7.8]} rotation={[0.13, -0.08, 0.08]} recieveShadow={true} scale={44}>
       <group ref={group} {...props} dispose={null}>
         <group name="Scene">
           <group

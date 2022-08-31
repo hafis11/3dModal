@@ -9,29 +9,35 @@ import {
   SpotLight,
   Environment,
   ContactShadows,
+  Sky,
 } from "@react-three/drei";
-import Loader from "../src/components/loader";
+import { Controllers, Hands, VRButton, XR } from "@react-three/xr";
 
-const Home = () => {
+function Home() {
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex w-full flex-1 flex-col">
+      <main className="flex w-full flex-1 flex-col relative items-center">
         <Canvas
           shadows={true}
           legacy={true}
           className="bg-black w-full h-full"
           camera={{
-            position: [0, 0, 9],
+            position: [0, 0, 0],
           }}
         >
-          <Suspense fallback={<Loader />}>
+          <XR>
+            <Controllers />
+            <Hands />
+            <Sky sunPosition={[0, 1, 0]} />
             <ambientLight intensity={0.5} />
             <SpotLight intensity={1} position={[-4, 3, 8]} />
-            <Model />
+            <mesh position={[0, 0.8, 0]}>
+              <Model />
+            </mesh>
             <Environment preset="city" />
             <ContactShadows
               position={[10, 8, 10]}
@@ -41,11 +47,15 @@ const Home = () => {
               far={1}
             />
             <OrbitControls />
-            <Floor position={[0, -4, 0]}/>
-          </Suspense>
+            <Floor position={[0, -5, -10]} rotation={[0.13, -0.08, 0.08]} />
+          </XR>
         </Canvas>
+        <div className="absolute bottom-0 left-0 right-0">
+          <VRButton/>
+        </div>
       </main>
-      <footer className="flex h-24 w-full items-center justify-center border-t flex-col">
+
+      <div className="flex h-24 w-full items-center justify-center border-t flex-col">
         <a
           className="flex items-center justify-center gap-2"
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -56,9 +66,9 @@ const Home = () => {
           <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
         </a>
         <span className="text-gray-500 text-xs">Version 1.0.1</span>
-      </footer>
+      </div>
     </div>
   );
-};
+}
 
 export default Home;

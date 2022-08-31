@@ -2,10 +2,14 @@ import Head from "next/head";
 import Image from "next/image";
 import { Canvas } from "@react-three/fiber";
 import Floor from "../src/components/floor";
-import LightBulb from "../src/components/lightBulb";
-// import Box from "../src/components/box";
-import OrbitControls from "../src/components/OrbitControls";
 import Model from "../src/components/modal";
+import { Suspense } from "react";
+import {
+  OrbitControls,
+  SpotLight,
+  Environment,
+  ContactShadows,
+} from "@react-three/drei";
 
 const Home = () => {
   return (
@@ -14,24 +18,32 @@ const Home = () => {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main className="flex w-full flex-1 flex-col">
         <Canvas
           shadows={true}
+          legacy={true}
           className="bg-black w-full h-full"
           camera={{
-            position: [-7, 0, 0],
+            position: [0, 0, 9],
           }}
         >
-          <ambientLight color={"white"} intensity={0.3} />
-          <LightBulb position={[-1, 2, -1.3]} />
-          {/* <Box rotateX={3} rotateY={0.2} /> */}
-          <Model />
-          <OrbitControls />
-          <Floor position={[0, -4, 0]} />
+          <Suspense fallback={null}>
+            <ambientLight intensity={0.5} />
+            <SpotLight intensity={1} position={[-4, 3, 8]} />
+            <Model />
+            <Environment preset="city" />
+            <ContactShadows
+              position={[10, 8, 10]}
+              opacity={1}
+              scale={10}
+              blur={1}
+              far={1}
+            />
+            <OrbitControls />
+            <Floor />
+          </Suspense>
         </Canvas>
       </main>
-
       <footer className="flex h-24 w-full items-center justify-center border-t">
         <a
           className="flex items-center justify-center gap-2"

@@ -10,6 +10,7 @@ import {
   Environment,
   ContactShadows,
 } from "@react-three/drei";
+import Loader from "../src/components/loader";
 
 const Home = () => {
   return (
@@ -27,7 +28,7 @@ const Home = () => {
             position: [0, 0, 9],
           }}
         >
-          <Suspense fallback={null}>
+          <Suspense fallback={<Loader />}>
             <ambientLight intensity={0.5} />
             <SpotLight intensity={1} position={[-4, 3, 8]} />
             <Model />

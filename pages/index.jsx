@@ -45,7 +45,7 @@ const Home = () => {
           </Suspense>
         </Canvas>
       </main>
-      <footer className="flex h-24 w-full items-center justify-center border-t">
+      <footer className="flex h-24 w-full items-center justify-center border-t flex flex-col">
         <a
           className="flex items-center justify-center gap-2"
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -55,6 +55,7 @@ const Home = () => {
           Powered by{" "}
           <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
         </a>
+        <span className="text-gray-500 text-xs">Version 1.0.1</span>
       </footer>
     </div>
   );

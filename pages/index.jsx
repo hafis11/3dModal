@@ -41,11 +41,11 @@ const Home = () => {
               far={1}
             />
             <OrbitControls />
-            <Floor />
+            <Floor position={[0, -4, 0]}/>
           </Suspense>
         </Canvas>
       </main>
-      <footer className="flex h-24 w-full items-center justify-center border-t flex flex-col">
+      <footer className="flex h-24 w-full items-center justify-center border-t flex-col">
         <a
           className="flex items-center justify-center gap-2"
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"

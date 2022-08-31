@@ -209,6 +209,14 @@
     suspend-react "^0.0.8"
     zustand "^3.7.1"
 
+"@react-three/xr@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@react-three/xr/-/xr-5.0.0.tgz#0a9725c525a6b5c550ff0ff8719bd22a5202471c"
+  integrity sha512-ylmGgG7UZ1954+9zPeR13XVZu5Fbt0Hf6tECHAwVQkNMnBStl00gKVWBPyYyztMGZvXVVlUkYzKQSAgGyCeoRQ==
+  dependencies:
+    three-stdlib "^2.12.1"
+    zustand "^3.7.1"
+
 "@swc/helpers@0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.4.3.tgz#16593dfc248c53b699d4b5026040f88ddb497012"
@@ -967,7 +975,7 @@ three-mesh-bvh@^0.5.15:
   resolved "https://registry.yarnpkg.com/three-mesh-bvh/-/three-mesh-bvh-0.5.15.tgz#bcf681d784d8988618344a5e11e7ded7e76ee86a"
   integrity sha512-jxE5iGjcoEMiyxUs7hMeZL6jBXBz9973ilqhXPhKlA1f7eitjIxRTtu7UWVQy+PhxXTsknmPzWmN5c+uAa/anA==
 
-three-stdlib@^2.14.3:
+three-stdlib@^2.12.1, three-stdlib@^2.14.3:
   version "2.14.3"
   resolved "https://registry.yarnpkg.com/three-stdlib/-/three-stdlib-2.14.3.tgz#785cf927d20b62462d8d7b7b369bca564a66a254"
   integrity sha512-FS2HsQFuGIexhzVRrAzhOHtC5YSkIyauWr3MgT6TSVcNZIVy5r+H9i5+Pjed2Oq4mpe97BufmJd+1Xg5Exh0rA==

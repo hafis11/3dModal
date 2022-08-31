@@ -1,14 +1,12 @@
 import React from "react";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { useLoader } from "@react-three/fiber";
 
-const Floor = () => {
-  const gltf = useLoader(GLTFLoader, "./scene.glb");
+function Floor(props) {
   return (
-    <mesh position={[0, -3.83, 3]} recieveShadow={true}>
-      <primitive object={gltf.scene} scale={3}/>
+    <mesh {...props} recieveShadow={true}>
+      <boxBufferGeometry args={[20,1,10]} />
+      <meshPhysicalMaterial color='white' />
     </mesh>
   );
-};
+}
 
 export default Floor;

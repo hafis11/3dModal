@@ -38,7 +38,13 @@ export default function Model({ open, hinge, ...props }) {
   });
 
   return (
-    <group {...props} ref={group} dispose={null}>
+    <group
+      {...props}
+      ref={group}
+      dispose={null}
+      onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
+      onPointerOut={(e) => setHovered(false)}
+    >
       <three.group position={[0, -0.04, 0.41]} rotation-x={hinge}>
         <group position={[0, 2.96, -0.13]} rotation={[Math.PI / 2, 0, 0]}>
           <mesh

@@ -1,78 +1,56 @@
-import Head from "next/head";
-import Image from "next/image";
 import { Canvas } from "@react-three/fiber";
-import Floor from "../src/components/floor";
 import Model from "../src/components/modal";
-import { Suspense } from "react";
-import {
-  OrbitControls,
-  SpotLight,
-  Environment,
-  ContactShadows,
-  Sky,
-} from "@react-three/drei";
-import { Controllers, Hands, VRButton, XR } from "@react-three/xr";
+import { Environment, ContactShadows } from "@react-three/drei";
+// import { Controllers, Hands, VRButton, XR } from "@react-three/xr";
+import { Suspense, useState } from "react";
+import { a as web } from "@react-spring/web";
+import { useSpring } from "@react-spring/core";
+import { a as three } from "@react-spring/three";
 
 function Home() {
-  return (
-    <div className="flex h-screen w-screen flex-col items-center justify-center">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="manifest" href="/manifest.json"/>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
-        />
-      </Head>
-      <main className="flex w-full flex-1 flex-col relative items-center">
-        <Canvas
-          shadows={true}
-          legacy={true}
-          className="bg-black w-full h-full"
-          camera={{
-            position: [0, 0, 0],
-          }}
-        >
-          <XR>
-            <Controllers />
-            <Hands />
-            <Sky sunPosition={[0, 1, 0]} />
-            <ambientLight intensity={0.5} />
-            <SpotLight intensity={1} position={[-4, 3, 8]} />
-            <mesh position={[0, 0.8, 0]}>
-              <Model />
-            </mesh>
-            <Environment preset="city" />
-            <ContactShadows
-              position={[10, 8, 10]}
-              opacity={1}
-              scale={10}
-              blur={1}
-              far={1}
-            />
-            <OrbitControls />
-            <Floor position={[0, -5, -10]} rotation={[0.13, -0.08, 0.08]} />
-          </XR>
-        </Canvas>
-        <div className="absolute bottom-0 left-0 right-0">
-          <VRButton />
-        </div>
-      </main>
+  const [open, setOpen] = useState(false);
 
-      <div className="flex h-24 w-full items-center justify-center border-t flex-col">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-        <span className="text-gray-500 text-xs">Version 1.0.1</span>
-      </div>
-    </div>
+  const props = useSpring({ open: Number(open) });
+  return (
+    <web.main
+      style={{ background: props.open.to([0, 1], ["#f0f0f0", "#d25578"]) }}
+      className="flex w-full h-screen flex-col items-center select-none relative"
+    >
+      <web.h1
+        style={{
+          opacity: props.open.to([0, 1], [1, 0]),
+          transform: props.open.to(
+            (o) => `translate3d(-50%,${o * 50 - 100}px,0)`
+          ),
+        }}
+        className={`text-[8em] absolute top-1/2 left-1/2`}
+      >
+        hello
+      </web.h1>
+      <Canvas dpr={[1, 2]} camera={{ position: [0, 0, -30], fov: 35 }}>
+        <three.pointLight
+          position={[10, 10, 10]}
+          intensity={1.5}
+          color={props.open.to([0, 1], ["#f0f0f0", "#d25578"])}
+        />
+        <Suspense fallback={null}>
+          <group
+            rotation={[0, Math.PI, 0]}
+            onClick={(e) => (e.stopPropagation(), setOpen(!open))}
+          >
+            <Model open={open} hinge={props.open.to([0, 1], [1.575, -0.425])} />
+          </group>
+          <Environment preset="city" />
+        </Suspense>
+        <ContactShadows
+          position={[0, -4.5, 0]}
+          opacity={0.4}
+          scale={20}
+          blur={1.75}
+          far={4.5}
+        />
+      </Canvas>
+    </web.main>
   );
 }
 

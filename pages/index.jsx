@@ -1,6 +1,6 @@
 import React from "react";
 import Hero from "../src/sections/hero";
-import Feature from "../src/sections/feature";
+// import Feature from "../src/sections/feature";
 
 function Home() {
   return (

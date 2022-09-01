@@ -12,7 +12,7 @@ function Hero() {
   const [open, setOpen] = useState(false);
 
   const props = useSpring({ open: Number(open) });
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 900px)" });
 
   return (
     <web.section

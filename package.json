@@ -9,7 +9,7 @@
     "@react-spring/core": "^9.5.2",
     "@react-spring/three": "^9.5.2",
     "@react-spring/web": "^9.5.2",
-    "@react-three/drei": "^9.25.2",
+    "@react-three/drei": "^9.88.5",
     "@react-three/fiber": "^8.6.0",
     "@react-three/xr": "^5.0.0",
     "next": "latest",
